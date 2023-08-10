@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useContext } from "react";
+import { UserContext } from '../contexts/UserContext'
 
 
 function Signup() {
@@ -7,7 +8,7 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [errors, setErrors] = useState();
-    const [user, setUser] = useState("");
+    const {setUser} = useContext(UserContext)
 
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
