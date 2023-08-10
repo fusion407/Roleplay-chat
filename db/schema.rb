@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_10_144940) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_10_212840) do
   create_table "campaigns", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -31,7 +31,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_144940) do
 
   create_table "messages", force: :cascade do |t|
     t.string "body"
-    t.integer "user_id"
     t.integer "campaign_id"
     t.integer "character_id"
     t.datetime "created_at", null: false

@@ -3,14 +3,26 @@ class CampaignsController < ApplicationController
         campaigns = Campaign.all
         render json: campaigns
     end
-
+    def show
+        campaign = find_campaign
+        render json: campaign
+    end
     def create
         campaign = Campaign.create!(campaign_params)
         render json: campaign, status: :created
     end
 
+    def destroy
+        campaign = find_campaign
+        campaign.destroy
+        head :no_content
+    end
+
     private
 
+    def find_campaign
+        Campaign.find_by(id: params[:id])
+    end
     def campaign_params
         params.permit(:title, :image_url, :description)
     end

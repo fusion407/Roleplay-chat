@@ -42,7 +42,7 @@ function NewCampaign() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
-                <label htmlFor="image">Image</label>
+                <label htmlFor="image">Image URL</label>
                 <input
                   type="text"
                   id="image"

@@ -9,7 +9,7 @@ import Profile from './components/Profile'
 import Campaigns from './components/Campaigns'
 import Signup from './components/Signup'
 import Login from './components/Login'
-
+import ShowCampaign from './components/ShowCampaign'
 
 function App() {
   const {user, setUser} = useContext(UserContext)
@@ -33,6 +33,10 @@ function App() {
           />
           <Route path="/campaigns/new" element={
             <NewCampaign />
+          }
+          />
+          <Route path="/campaigns/:campaignId" element={
+            <ShowCampaign />
           }
           />
          <Route path="/profile" element={
