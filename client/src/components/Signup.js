@@ -10,6 +10,7 @@ function Signup() {
     const [errors, setErrors] = useState();
     const {setUser} = useContext(UserContext)
 
+    
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
 
