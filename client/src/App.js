@@ -31,18 +31,18 @@ function App() {
             <Campaigns />
           }
           />
-          {/* todo: move new campaign route to campaigns page */}
           <Route path="/campaigns/new" element={
             <NewCampaign />
           }
           />
-          {/* if user exists, display profile route and logout button */}
          <Route path="/profile" element={
             <Profile />
           }
           />
-          {/* else, display login and signup routes */}
-
+          <Route path="/" element={
+            <Home />
+          }
+          />
         </Routes>
         ) : (
           <Routes>
