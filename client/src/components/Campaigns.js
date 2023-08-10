@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 function Campaigns() {
     const [campaigns, setCampaigns] = useState('')
 
-
     useEffect(() => {
         // load event data
         fetch("/campaigns").then((r) => {
