@@ -2,11 +2,11 @@
 
 function Home() {
     return(
-        <div>
+        <header>
             <div>
               <p>Welcome home.</p>
             </div>
-        </div>
+        </header>
     )
 }
 
