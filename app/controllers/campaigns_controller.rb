@@ -1,12 +1,19 @@
 class CampaignsController < ApplicationController
+
     def index
         campaigns = Campaign.all
         render json: campaigns
     end
+
     def show
         campaign = find_campaign
+        if @current_user.id == campaign.Character.user_id
+            render json: campaign
+
+        end
         render json: campaign
     end
+
     def create
         campaign = Campaign.create!(campaign_params)
         render json: campaign, status: :created

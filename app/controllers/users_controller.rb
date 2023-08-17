@@ -16,17 +16,24 @@ class UsersController < ApplicationController
         end
     end
   
+
+    
     def show
         user = @current_user
         render json: user
     end
 
+    def destroy
+        user = find_user
+        user.destroy
+        head :no_content
+    end
 
     private
   
-    # def find_user
-    #   User.find_by(id: session[:user_id])
-    # end
+    def find_user
+        User.find_by(id: params[:id])
+    end
 
     def user_params
       params.permit(:username, :password, :password_confirmation)

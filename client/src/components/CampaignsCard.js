@@ -20,7 +20,7 @@ function CampaignsCard(props) {
             <p>{description}</p>
             {/* when user joins campaign, backend will check if user owns character on chosen campaign */}
             {/* if no character exists, prompt to create new character for this campaign, else proceed to chatroom */}
-            <Link to={`/campaigns/${id}`}>Campaigns</Link>
+            <Link to={`/campaigns/${id}`}>Join Campaign</Link>
         </div>
     )
 }

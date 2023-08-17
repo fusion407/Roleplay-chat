@@ -1,11 +1,13 @@
 class MessagesController < ApplicationController
+    skip_before_action only: [:create]
+
     def index
         messages = Message.all
         render json: messages
     end
 
     def create
-        message = Message.create(message_params)
+        message = Message.create!(message_params)
         render json: message, status: :created
     end
 

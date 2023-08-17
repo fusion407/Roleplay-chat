@@ -3,6 +3,7 @@ import { useState } from 'react'
 function CurrentCampaign({campaign}) {
     const [message, setMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState(false);
 
     const {
         id,
@@ -11,19 +12,30 @@ function CurrentCampaign({campaign}) {
         description
     } = campaign
 
-    const handleSubmit = async (e) => {
+    function handleSubmit(e) {
         e.preventDefault();
-        e.target.message.value = '';
-      
-        await fetch("/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: message,
-          campaign_id: id,
-          character_id: 1
-        })
+
+        console.log(message)
+        console.log("campaign id: " + id)
+        // setIsLoading(true);
+        // fetch("/messages", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ 
+        //     body: message, 
+        //     campaign_id: id,
+        //     character_id : 1,
+        //  }),
+        // }).then((r) => {
+        //   setIsLoading(false);
+        //   if (r.ok) {
+        //     r.json().then((data) => console.log(data));
+        //   } else {
+        //     r.json().then((err) => setErrors(err.errors));
+        //   }
+        // });
       }
 
     return(
@@ -32,7 +44,7 @@ function CurrentCampaign({campaign}) {
             <img src={image_url} alt="campaign img"/>
             <p>{description}</p>        
             <div>
-                <h2>here is message box</h2>
+                <h2>Chat:</h2>
                 <form onSubmit={handleSubmit}>
                     <input 
                         type="message"
