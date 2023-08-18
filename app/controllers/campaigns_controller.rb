@@ -7,11 +7,12 @@ class CampaignsController < ApplicationController
 
     def show
         campaign = find_campaign
-        if @current_user.id == campaign.Character.user_id
+        playable_character = find_playable_character(campaign)
+        if playable_character.length < 1
             render json: campaign
-
+        else
+            render json: playable_character
         end
-        render json: campaign
     end
 
     def create
@@ -30,6 +31,11 @@ class CampaignsController < ApplicationController
     def find_campaign
         Campaign.find_by(id: params[:id])
     end
+
+    def find_playable_character(campaign)
+        campaign.characters.where(user_id: @current_user.id)
+    end
+    
     def campaign_params
         params.permit(:title, :image_url, :description)
     end

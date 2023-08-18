@@ -1,4 +1,5 @@
 class CharactersController < ApplicationController
+    skip_before_action :authorize, only: [:create]
 
     def index
         characters = Character.all
@@ -15,7 +16,7 @@ class CharactersController < ApplicationController
         character.destroy
         head :no_content
     end
-    
+
     private
 
     def find_character

@@ -5,23 +5,37 @@ import CurrentCampaign from './CurrentCampaign';
 
 function ShowCampaign() {
     const [campaign, setCampaign] = useState()
+    const [character, setCharacter] = useState()
+    const [isNewPlayer, setIsNewPlayer] = useState(false)
     let {campaignId} = useParams();
 
     useEffect(() => {
         fetch(`/campaigns/${campaignId}`).then((r) => {
           if (r.ok) {
-            r.json().then((campaign) => setCampaign(campaign));
+            r.json().then((data) => checkAvailableCharacters(data));
           }
         });
       }, []);
 
-    console.log(campaign)
+    function checkAvailableCharacters(data) {
+        if(data.characters) {
+            console.log("no characters")
+            setCampaign(data)
+            setIsNewPlayer(true)
+        } else {
+            console.log("character found")
+            setCampaign(data[0].campaign)
+            setCharacter(data[0])
+            setIsNewPlayer(false)
+        }
+    }
+
     return(
         <div>
-            {campaign ? 
-                <CurrentCampaign campaign={campaign}/>
+            {isNewPlayer ? 
+                'here is character creation component'
             :
-                ''
+                campaign ? <CurrentCampaign campaign={campaign}/> : ''
             }
         </div>
     )
