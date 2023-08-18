@@ -5,7 +5,7 @@ import { UserContext } from './contexts/UserContext'
 import Home from './components/Home'
 import Navbar from './components/Navbar'
 import NewCampaign from './components/NewCampaign'
-import Profile from './components/Profile'
+import MyCharacters from './components/MyCharacters'
 import Campaigns from './components/Campaigns'
 import Signup from './components/Signup'
 import Login from './components/Login'
@@ -39,8 +39,8 @@ function App() {
             <ShowCampaign />
           }
           />
-         <Route path="/profile" element={
-            <Profile />
+         <Route path="/characters" element={
+            <MyCharacters />
           }
           />
           <Route path="/" element={

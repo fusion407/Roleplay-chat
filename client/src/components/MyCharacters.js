@@ -2,7 +2,7 @@ import { UserContext } from '../contexts/UserContext'
 import React, { useContext} from 'react'
 
 
-function Profile() {
+function MyCharacters() {
     const {user} = useContext(UserContext)
 
 
@@ -15,4 +15,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default MyCharacters
