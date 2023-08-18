@@ -7,7 +7,6 @@ import CharacterCreator from './CharacterCreator';
 function ShowCampaign() {
     const [campaign, setCampaign] = useState()
     const [character, setCharacter] = useState()
-    // const [isNewPlayer, setIsNewPlayer] = useState('')
     let {campaignId} = useParams();
 
     useEffect(() => {
@@ -21,11 +20,9 @@ function ShowCampaign() {
     function checkAvailableCharacters(data) {
         if(!data.user) {
             console.log("no characters, lets create a new one")
-            // setIsNewPlayer(true)
             setCampaign(data)
         } else {
             console.log("character found, have fun!")
-            // setIsNewPlayer(false)
             setCampaign(data.campaign)
             setCharacter(data)
         }

@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-    skip_before_action :authorize, only: [:create]
+    # skip_before_action :authorize, only: [:create]
 
     def index
         characters = Character.all
@@ -7,7 +7,7 @@ class CharactersController < ApplicationController
     end
 
     def create
-        character = Character.create!(character_params)
+        character = Character.create!(character_params.merge(user_id: @current_user.id))
         render json: character, status: :created
     end
 
@@ -25,7 +25,7 @@ class CharactersController < ApplicationController
 
 
     def character_params
-        params.permit(:name, :race, :character_class, :user_id, :campaign_id)
+        params.permit(:name, :race, :character_class, :campaign_id)
     end
 
 end

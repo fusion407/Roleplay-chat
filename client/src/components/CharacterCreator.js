@@ -17,27 +17,31 @@ function CharacterCreator({campaign, setCharacter}) {
         console.log("race: " + race)
         console.log("characterClass: " + characterClass)
         console.log("campaign id: " + campaign.id)
-        setCharacter({
-            name: name,
+        // setCharacter({
+        //     name: name,
+        //     race: race,
+        //     character_class: characterClass,
+        //     campaign_id: campaign.id
+        // })
+        fetch("/characters", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            name: name, 
             race: race,
             character_class: characterClass,
-            campaign_id: campaign.id
-        })
-        // fetch("/login", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({ username, password }),
-        // }).then((r) => {
-        //   setIsLoading(false);
-        //   if (r.ok) {
-        //     r.json().then((user) => setUser(user));
-        //     navigate("/");
-        //   } else {
-        //     r.json().then((err) => setErrors(err.error));
-        //   }
-        // });
+            campaign_id: campaign.id 
+        }),
+        }).then((r) => {
+          setIsLoading(false);
+          if (r.ok) {
+            r.json().then((character) => setCharacter(character));
+          } else {
+            r.json().then((err) => setErrors(err.error));
+          }
+        });
       }
 
     return(
