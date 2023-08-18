@@ -53,7 +53,7 @@ function CurrentCampaign({campaign, character}) {
             <div>
                 <h2>Character:</h2>
                 {character ? 
-                    <h3>{character.name}, {character.race} {character.character_class}</h3>
+                    <h3>{character.name}, {character.race} {character.character_class}. Campaign id: {id}</h3>
                     :
                     ''
                 }

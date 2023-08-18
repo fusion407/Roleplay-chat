@@ -7,7 +7,7 @@ import CharacterCreator from './CharacterCreator';
 function ShowCampaign() {
     const [campaign, setCampaign] = useState()
     const [character, setCharacter] = useState()
-    const [isNewPlayer, setIsNewPlayer] = useState(false)
+    // const [isNewPlayer, setIsNewPlayer] = useState('')
     let {campaignId} = useParams();
 
     useEffect(() => {
@@ -19,24 +19,24 @@ function ShowCampaign() {
       }, []);
 
     function checkAvailableCharacters(data) {
-        if(data.characters) {
-            console.log("no characters")
-            setIsNewPlayer(true)
+        if(!data.user) {
+            console.log("no characters, lets create a new one")
+            // setIsNewPlayer(true)
             setCampaign(data)
         } else {
-            console.log("character found")
-            setIsNewPlayer(false)
-            setCampaign(data[0].campaign)
-            setCharacter(data[0])
+            console.log("character found, have fun!")
+            // setIsNewPlayer(false)
+            setCampaign(data.campaign)
+            setCharacter(data)
         }
     }
 
     return(
         <div>
-            {isNewPlayer ? 
-                <CharacterCreator campaign={campaign}/>
+            {!character ? 
+                <CharacterCreator campaign={campaign} setCharacter={setCharacter} />
             :
-                campaign ? <CurrentCampaign character={character} campaign={campaign}/> : ''
+                campaign ? <CurrentCampaign character={character} campaign={campaign}/> : 'Loading...'
             }
         </div>
     )

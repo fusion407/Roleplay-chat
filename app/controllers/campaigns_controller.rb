@@ -11,7 +11,7 @@ class CampaignsController < ApplicationController
         if playable_character.length < 1
             render json: campaign
         else
-            render json: playable_character
+            render json: playable_character.first
         end
     end
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function CharacterCreator({campaign}) {
+function CharacterCreator({campaign, setCharacter}) {
     const [name, setName] = useState('')
     const [race, setRace] = useState('')
     const [characterClass, setCharacterClass] = useState('')
@@ -17,7 +17,12 @@ function CharacterCreator({campaign}) {
         console.log("race: " + race)
         console.log("characterClass: " + characterClass)
         console.log("campaign id: " + campaign.id)
-
+        setCharacter({
+            name: name,
+            race: race,
+            character_class: characterClass,
+            campaign_id: campaign.id
+        })
         // fetch("/login", {
         //   method: "POST",
         //   headers: {
@@ -63,7 +68,7 @@ function CharacterCreator({campaign}) {
                   value={characterClass}
                   onChange={(e) => setCharacterClass(e.target.value)}
                 />
-                <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+                <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
                 <div>
                   {errors ? errors : ""}
                 </div>
