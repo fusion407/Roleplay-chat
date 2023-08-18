@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function CurrentCampaign({campaign}) {
+function CurrentCampaign({campaign, character}) {
     const [message, setMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState(false);
@@ -9,8 +9,15 @@ function CurrentCampaign({campaign}) {
         id,
         title,
         image_url,
-        description
+        description,
     } = campaign
+
+    // const {
+    //     name,
+    //     race,
+    //     character_class
+    // } = character
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -44,6 +51,12 @@ function CurrentCampaign({campaign}) {
             <img src={image_url} alt="campaign img"/>
             <p>{description}</p>        
             <div>
+                <h2>Character:</h2>
+                {character ? 
+                    <h3>{character.name}, {character.race} {character.character_class}</h3>
+                    :
+                    ''
+                }
                 <h2>Chat:</h2>
                 <form onSubmit={handleSubmit}>
                     <input 

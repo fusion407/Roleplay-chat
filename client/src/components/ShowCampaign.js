@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import CurrentCampaign from './CurrentCampaign';
+import CharacterCreator from './CharacterCreator';
 
 
 function ShowCampaign() {
@@ -20,22 +21,22 @@ function ShowCampaign() {
     function checkAvailableCharacters(data) {
         if(data.characters) {
             console.log("no characters")
-            setCampaign(data)
             setIsNewPlayer(true)
+            setCampaign(data)
         } else {
             console.log("character found")
+            setIsNewPlayer(false)
             setCampaign(data[0].campaign)
             setCharacter(data[0])
-            setIsNewPlayer(false)
         }
     }
 
     return(
         <div>
             {isNewPlayer ? 
-                'here is character creation component'
+                <CharacterCreator campaign={campaign}/>
             :
-                campaign ? <CurrentCampaign campaign={campaign}/> : ''
+                campaign ? <CurrentCampaign character={character} campaign={campaign}/> : ''
             }
         </div>
     )
