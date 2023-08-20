@@ -15,7 +15,6 @@ function CampaignsList({campaigns}) {
 
     return(
         <div>
-            {/* todo: get campaign data and create list, passing its attributes down to campaigns card as prop */}
             {campaignData}
         </div>
     )

@@ -12,17 +12,15 @@ function CharacterCreator({campaign, setCharacter}) {
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
+
+        // debug
         console.log("form submitted...")
         console.log("name: " + name)
         console.log("race: " + race)
         console.log("characterClass: " + characterClass)
         console.log("campaign id: " + campaign.id)
-        // setCharacter({
-        //     name: name,
-        //     race: race,
-        //     character_class: characterClass,
-        //     campaign_id: campaign.id
-        // })
+        // ------
+        
         fetch("/characters", {
           method: "POST",
           headers: {

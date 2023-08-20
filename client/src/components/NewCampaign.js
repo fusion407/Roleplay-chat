@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function NewCampaign() {
+function NewCampaign({setCampaigns}) {
     const [title, setTitle] = useState("")
     const [image, setImage] = useState("")
     const [description, setDescription] = useState("")
@@ -23,7 +23,7 @@ function NewCampaign() {
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((campaign) => console.log(campaign));
+            r.json().then((campaign) => setCampaigns((campaigns) => [campaign, ...campaigns]));
           } else {
             r.json().then((err) => setErrors(err.errors));
           }

@@ -10,9 +10,21 @@ import Campaigns from './components/Campaigns'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import ShowCampaign from './components/ShowCampaign'
+import { useEffect, useState } from 'react'
 
 function App() {
+  const [campaigns, setCampaigns] = useState('')
   const {user, setUser} = useContext(UserContext)
+
+
+  useEffect(() => {
+    // load campaign data
+    fetch("/campaigns").then((r) => {
+      if (r.ok) {
+        r.json().then((campaign) => setCampaigns(campaign));
+      }
+    });
+  }, []);
 
   function handleLogout() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -28,11 +40,11 @@ function App() {
         {user ? (
         <Routes>
           <Route path="/campaigns" element={
-            <Campaigns />
+            <Campaigns campaigns={campaigns}/>
           }
           />
           <Route path="/campaigns/new" element={
-            <NewCampaign />
+            <NewCampaign setCampaigns={setCampaigns}/>
           }
           />
           <Route path="/campaigns/:campaignId" element={

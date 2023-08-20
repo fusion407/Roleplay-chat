@@ -12,12 +12,12 @@ function ShowCampaign() {
     useEffect(() => {
         fetch(`/campaigns/${campaignId}`).then((r) => {
           if (r.ok) {
-            r.json().then((data) => checkAvailableCharacters(data));
+            r.json().then((data) => checkForAvailableCharacter(data));
           }
         });
       }, []);
 
-    function checkAvailableCharacters(data) {
+    function checkForAvailableCharacter(data) {
         if(!data.user) {
             console.log("no characters, lets create a new one")
             setCampaign(data)

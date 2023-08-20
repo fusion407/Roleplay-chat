@@ -6,24 +6,29 @@ function CurrentCampaign({campaign, character}) {
     const [errors, setErrors] = useState(false);
 
     const {
-        id,
         title,
         image_url,
         description,
     } = campaign
 
-    // const {
-    //     name,
-    //     race,
-    //     character_class
-    // } = character
-
+    const {
+        name,
+        race,
+        character_class,
+    } = character
 
     function handleSubmit(e) {
         e.preventDefault();
 
-        console.log(message)
-        console.log("campaign id: " + id)
+        // debug
+        console.log("-------------")
+        console.log("character: " + name + ", " + race + " " + character_class)
+        console.log("message: " + message)
+        console.log("character id: " + character.id)
+        console.log("campaign id: " + campaign.id)
+        console.log("campaign title: " + title)
+        console.log("-------------")
+
         // setIsLoading(true);
         // fetch("/messages", {
         //   method: "POST",
@@ -53,7 +58,7 @@ function CurrentCampaign({campaign, character}) {
             <div>
                 <h2>Character:</h2>
                 {character ? 
-                    <h3>{character.name}, {character.race} {character.character_class}. Campaign id: {id}</h3>
+                    <h3>{name}, {race} {character_class}. Campaign id: {campaign.id}</h3>
                     :
                     ''
                 }
