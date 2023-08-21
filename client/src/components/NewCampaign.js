@@ -7,10 +7,10 @@ function NewCampaign({setCampaigns}) {
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState(null);
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        fetch("/campaigns", {
+        await fetch("/campaigns", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ function NewCampaign({setCampaigns}) {
                   onChange={(e) => setDescription(e.target.value)}
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
-
+                {errors ? errors : ''}
               </form>
             </div>
         </div>

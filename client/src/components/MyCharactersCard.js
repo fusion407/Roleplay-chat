@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function MyCharactersCard({id, name, race, character_class, campaign, myCharacters, setMyCharacters}) {
+function MyCharactersCard({id, name, race, character_class, campaign, setMyCharacters}) {
 
     // const {
     //     id,

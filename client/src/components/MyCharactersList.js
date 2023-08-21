@@ -12,7 +12,6 @@ function MyCharactersList({myCharacters, setMyCharacters}) {
             character_class={data.character_class}
             campaign={data.campaign}
             setMyCharacters={setMyCharacters}
-            myCharacters={myCharacters}
         />
     )
 
