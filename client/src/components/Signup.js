@@ -15,11 +15,11 @@ function Signup() {
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setErrors([]);
         setIsLoading(true);
-        fetch("/signup", {
+        await fetch("/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function Signup() {
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Sign up"}</button>
                 <div>
-                    {errors ? errors : ""}
+                    {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
                 </div>
             </form>
         </div>

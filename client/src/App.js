@@ -18,6 +18,7 @@ function App() {
   const [myCharacters, setMyCharacters] = useState('')
   const [selectedCharacter, setSelectedCharacter] = useState('')
   const {user, setUser} = useContext(UserContext)
+  
 
 
   useEffect(() => {
@@ -42,6 +43,7 @@ function App() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setUser(null);
+        setMyCharacters(null);
       }
     });
   }

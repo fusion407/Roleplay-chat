@@ -9,7 +9,6 @@ function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCha
     const [errors, setErrors] = useState('')
 
 
-
     function onCreateNewCharacter(character) {
         setPlayerCharacter(character)
         setMyCharacters([...myCharacters, character])
@@ -17,14 +16,6 @@ function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCha
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-
-        // debug
-        console.log("form submitted...")
-        console.log("name: " + name)
-        console.log("race: " + race)
-        console.log("characterClass: " + characterClass)
-        console.log("campaign id: " + campaign.id)
-        // ------
         
         fetch("/characters", {
           method: "POST",
@@ -80,9 +71,9 @@ function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCha
                   onChange={(e) => setCharacterClass(e.target.value)}
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
-            <div>
-                {errors ? errors.map((error) => <Error error={error}/>) : ""}
-            </div>
+                <div>
+                    {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
+                </div>
             </form>
         </div>
     )

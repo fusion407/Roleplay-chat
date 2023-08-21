@@ -1,5 +1,6 @@
 import MyCharactersList from './MyCharactersList'
 import { UserContext } from '../contexts/UserContext'
+import { CharacterContext } from '../contexts/CharacterContext'
 import React, { useContext, useEffect, useState } from 'react'
 
 

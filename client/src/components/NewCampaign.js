@@ -61,7 +61,7 @@ function NewCampaign({setCampaigns}) {
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
                 <div>
-                    {errors ? errors.map((error) => <Error error={error}/>) : ""}
+                    {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
                 </div>
               </form>
             </div>
