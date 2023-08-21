@@ -30,14 +30,6 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    // load character data
-    fetch("/mycharacters").then((r) => {
-      if (r.ok) {
-        r.json().then((characters) => setMyCharacters(characters));
-      }
-    });
-  }, []);
 
   function handleLogout() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
