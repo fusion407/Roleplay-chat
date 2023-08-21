@@ -1,6 +1,6 @@
 import MyCharactersCard from "./MyCharactersCard"
 
-function MyCharactersList({myCharacters, setMyCharacters}) {
+function MyCharactersList({myCharacters, setMyCharacters, setSelectedCharacter}) {
 
 
     const myCharactersData = myCharacters.map((data) =>
@@ -12,6 +12,7 @@ function MyCharactersList({myCharacters, setMyCharacters}) {
             character_class={data.character_class}
             campaign={data.campaign}
             setMyCharacters={setMyCharacters}
+            setSelectedCharacter={setSelectedCharacter}
         />
     )
 

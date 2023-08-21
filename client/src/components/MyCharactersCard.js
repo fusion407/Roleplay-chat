@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
-function MyCharactersCard({id, name, race, character_class, campaign, setMyCharacters}) {
+function MyCharactersCard(props) {
+    const navigate = useNavigate();
 
-    // const {
-    //     id,
-    //     name,
-    //     race,
-    //     character_class,
-    //     campaign,
-    //     setMyCharacters,
-    //     myCharacters
-    // } = props
+    const {
+        id,
+        name,
+        race,
+        character_class,
+        campaign,
+        setMyCharacters,
+        setSelectedCharacter
+    } = props
 
     // todo:
     // Make EditCharacter component that will be displayed onClick of edit button
@@ -25,6 +26,8 @@ function MyCharactersCard({id, name, race, character_class, campaign, setMyChara
         console.log("character to be edited: " + name + ", user id: " + id)
         // -------
 
+        setSelectedCharacter(props)
+        navigate(`/characters/${id}/edit`)
 
     }
     // function onDelete() {

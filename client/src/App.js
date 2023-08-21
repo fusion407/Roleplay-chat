@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Navbar from './components/Navbar'
 import NewCampaign from './components/NewCampaign'
 import MyCharacters from './components/MyCharacters'
+import EditCharacter from './components/EditCharacter'
 import Campaigns from './components/Campaigns'
 import Signup from './components/Signup'
 import Login from './components/Login'
@@ -14,6 +15,8 @@ import { useEffect, useState } from 'react'
 
 function App() {
   const [campaigns, setCampaigns] = useState('')
+  const [myCharacters, setMyCharacters] = useState('')
+  const [selectedCharacter, setSelectedCharacter] = useState('')
   const {user, setUser} = useContext(UserContext)
 
 
@@ -22,6 +25,15 @@ function App() {
     fetch("/campaigns").then((r) => {
       if (r.ok) {
         r.json().then((campaign) => setCampaigns(campaign));
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    // load character data
+    fetch("/mycharacters").then((r) => {
+      if (r.ok) {
+        r.json().then((characters) => setMyCharacters(characters));
       }
     });
   }, []);
@@ -52,7 +64,11 @@ function App() {
           }
           />
          <Route path="/characters" element={
-            <MyCharacters />
+            <MyCharacters myCharacters={myCharacters} setMyCharacters={setMyCharacters} setSelectedCharacter={setSelectedCharacter}/>
+          }
+          />
+          <Route path="/characters/:id/edit" element={
+            <EditCharacter myCharacters={myCharacters} setMyCharacters={setMyCharacters} selectedCharacter={selectedCharacter}/>
           }
           />
           <Route path="/" element={
