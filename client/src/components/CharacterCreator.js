@@ -44,7 +44,11 @@ function CharacterCreator({campaign, setCharacter}) {
 
     return(
         <div>
-            <h1>Character creator</h1>
+            <h1>Create new character</h1>
+            <div>
+                <h2>Campaign: {campaign.title}</h2>
+                <p>{campaign.description}</p>
+            </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
                 <input

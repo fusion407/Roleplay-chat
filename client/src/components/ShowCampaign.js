@@ -5,7 +5,7 @@ import CharacterCreator from './CharacterCreator';
 
 
 function ShowCampaign() {
-    const [campaign, setCampaign] = useState()
+    const [campaign, setCampaign] = useState('')
     const [character, setCharacter] = useState()
     let {campaignId} = useParams();
 
@@ -30,10 +30,10 @@ function ShowCampaign() {
 
     return(
         <div>
-            {!character ? 
-                <CharacterCreator campaign={campaign} setCharacter={setCharacter} />
+            {character ? 
+                campaign ? <CurrentCampaign  campaign={campaign} character={character}/> : 'Loading...'
             :
-                campaign ? <CurrentCampaign character={character} campaign={campaign}/> : 'Loading...'
+                campaign ? <CharacterCreator campaign={campaign} setCharacter={setCharacter} /> : 'Loading...'
             }
         </div>
     )

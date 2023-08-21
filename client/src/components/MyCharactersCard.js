@@ -11,18 +11,29 @@ function MyCharactersCard(props) {
     } = props
 
     // todo:
-    // implement Edit and Delete button
-    // Make EditCharacter component for user to be directed to by clicking edit
-    // include a link to characters campaign page
+    // Make EditCharacter component that will be displayed onClick of edit button
+    // implement DELETE logic so character will be erased from the database 
 
 
     function handleEdit(e) {
         e.preventDefault()
+
+        //debug
         console.log("edit button clicked")
+        console.log("character to be edited: " + name + ", user id: " + id)
+        // -------
+
+
     }
     function handleDelete(e) {
         e.preventDefault()
+
+        //debug
         console.log("delete button clicked")
+        console.log("character deleted: " + name + ", user id: " + id)
+        // -------
+        
+
     }
 
     return(
@@ -34,11 +45,14 @@ function MyCharactersCard(props) {
                 <p>class: {character_class}</p>
                 <p>campaign title: {campaign.title}</p>
                 <p>campaign id: {campaign.id}</p>
-                <Link to={`/campaigns/${campaign.id}`}>Join</Link>
+                <div>
+                    <Link to={`/campaigns/${campaign.id}`}>Play</Link>
+                </div>
             </div>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
-
+            <div>
+                <button onClick={handleEdit}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+            </div>
         </>
     )
 }
