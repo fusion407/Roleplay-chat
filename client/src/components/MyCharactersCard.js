@@ -13,10 +13,6 @@ function MyCharactersCard(props) {
         setSelectedCharacter
     } = props
 
-    // todo:
-    // Make EditCharacter component that will be displayed onClick of edit button
-    // implement DELETE logic so character will be erased from the database 
-
 
     function handleEdit(e) {
         e.preventDefault()
@@ -34,11 +30,6 @@ function MyCharactersCard(props) {
     function handleDelete(e) {
         e.preventDefault()
 
-        //debug
-        console.log("delete button clicked")
-        console.log("character deleted: " + name + ", user id: " + id)
-        // -------
-
         fetch(`/characters/${id}`, {
             method: "DELETE",
           }).then((r) => {
@@ -52,11 +43,10 @@ function MyCharactersCard(props) {
         <>
             <div>
                 <h2>{name}</h2>
-                <p>user id: {id}</p>
-                <p>race: {race}</p>
-                <p>class: {character_class}</p>
-                <p>campaign title: {campaign.title}</p>
-                <p>campaign id: {campaign.id}</p>
+                <p>id: {id}</p>
+                <p>Race: {race}</p>
+                <p>Class: {character_class}</p>
+                <p>Campaign: {campaign.title}</p>
                 <div>
                     <Link to={`/campaigns/${campaign.id}`}>Play</Link>
                 </div>

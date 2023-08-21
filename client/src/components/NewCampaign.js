@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Error from './Error'
 
 function NewCampaign({setCampaigns}) {
     const [title, setTitle] = useState("")
@@ -59,7 +60,9 @@ function NewCampaign({setCampaigns}) {
                   onChange={(e) => setDescription(e.target.value)}
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
-                {errors ? errors : ''}
+                <div>
+                    {errors ? errors.map((error) => <Error error={error}/>) : ""}
+                </div>
               </form>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext'
+import Error from './Error'
 
 
 function Signup() {
@@ -10,7 +11,7 @@ function Signup() {
     const [errors, setErrors] = useState();
     const {setUser} = useContext(UserContext)
 
-    
+
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
 
@@ -68,7 +69,7 @@ function Signup() {
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Sign up"}</button>
                 <div>
-                    {/* {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""} */}
+                    {errors ? errors : ""}
                 </div>
             </form>
         </div>

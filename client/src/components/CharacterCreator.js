@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import Error from './Error'
 
 function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCharacter}) {
     const [name, setName] = useState('')
     const [race, setRace] = useState('')
     const [characterClass, setCharacterClass] = useState('')
     const [isLoading, setIsLoading] = useState()
-    const [errors, setErrors] = useState()
+    const [errors, setErrors] = useState('')
 
 
 
@@ -41,7 +42,7 @@ function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCha
           if (r.ok) {
             r.json().then((character) => onCreateNewCharacter(character));
           } else {
-            r.json().then((err) => setErrors(err.error));
+            r.json().then((err) => setErrors(err.errors));
           }
         });
       }
@@ -79,9 +80,9 @@ function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCha
                   onChange={(e) => setCharacterClass(e.target.value)}
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
-                <div>
-                  {errors ? errors : ""}
-                </div>
+            <div>
+                {errors ? errors.map((error) => <Error error={error}/>) : ""}
+            </div>
             </form>
         </div>
     )

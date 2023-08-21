@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate  } from "react-router-dom";
+import Error from './Error'
 
 function EditCharacterForm({myCharacters, setMyCharacters, selectedCharacter, setSelectedCharacter}) {
     const [name, setName] = useState(selectedCharacter.name)
@@ -22,6 +23,8 @@ function EditCharacterForm({myCharacters, setMyCharacters, selectedCharacter, se
     
     async function handleSubmit(e) {
         e.preventDefault();
+        setIsLoading(true);
+
         await fetch(`/characters/${selectedCharacter.id}`, {
           method: "PATCH",
           headers: {
@@ -33,6 +36,7 @@ function EditCharacterForm({myCharacters, setMyCharacters, selectedCharacter, se
             character_class : characterClass
           }),
         }).then((r) => {
+        setIsLoading(false);
           if (r.ok) {
             r.json().then((updatedCharacter) => onUpdateCharacter(updatedCharacter));
           } else {
@@ -70,7 +74,7 @@ function EditCharacterForm({myCharacters, setMyCharacters, selectedCharacter, se
                 />
                 <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
                 <div>
-                  {errors ? errors : ""}
+                    {errors ? errors.map((error) => <Error error={error}/>) : ""}
                 </div>
             </form>
         </div>
