@@ -11,6 +11,12 @@ class CharactersController < ApplicationController
         render json: character, status: :created
     end
 
+    def update
+        character = find_character
+        character.update(character_params)
+        render json: character, status: :updated
+    end
+
     def destroy
         character = find_character
         character.destroy

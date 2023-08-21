@@ -60,15 +60,27 @@ function App() {
           }
           />
           <Route path="/campaigns/:campaignId" element={
-            <ShowCampaign />
+            <ShowCampaign               
+              myCharacters={myCharacters} 
+              setMyCharacters={setMyCharacters} 
+            />
           }
           />
          <Route path="/characters" element={
-            <MyCharacters myCharacters={myCharacters} setMyCharacters={setMyCharacters} setSelectedCharacter={setSelectedCharacter}/>
+            <MyCharacters 
+              myCharacters={myCharacters} 
+              setMyCharacters={setMyCharacters} 
+              setSelectedCharacter={setSelectedCharacter}
+            />
           }
           />
           <Route path="/characters/:id/edit" element={
-            <EditCharacter myCharacters={myCharacters} setMyCharacters={setMyCharacters} selectedCharacter={selectedCharacter}/>
+            <EditCharacter 
+              myCharacters={myCharacters} 
+              setMyCharacters={setMyCharacters} 
+              selectedCharacter={selectedCharacter}
+              setSelectedCharacter={setSelectedCharacter}
+            />
           }
           />
           <Route path="/" element={

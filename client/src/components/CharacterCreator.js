@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function CharacterCreator({campaign, setCharacter}) {
+function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCharacter}) {
     const [name, setName] = useState('')
     const [race, setRace] = useState('')
     const [characterClass, setCharacterClass] = useState('')
@@ -9,6 +9,10 @@ function CharacterCreator({campaign, setCharacter}) {
 
 
 
+    function onCreateNewCharacter(character) {
+        setPlayerCharacter(character)
+        setMyCharacters([...myCharacters, character])
+    }
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
@@ -35,7 +39,7 @@ function CharacterCreator({campaign, setCharacter}) {
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((character) => setCharacter(character));
+            r.json().then((character) => onCreateNewCharacter(character));
           } else {
             r.json().then((err) => setErrors(err.error));
           }

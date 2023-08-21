@@ -4,9 +4,9 @@ import CurrentCampaign from './CurrentCampaign';
 import CharacterCreator from './CharacterCreator';
 
 
-function ShowCampaign() {
+function ShowCampaign({myCharacters, setMyCharacters}) {
     const [campaign, setCampaign] = useState('')
-    const [character, setCharacter] = useState()
+    const [playerCharacter, setPlayerCharacter] = useState()
     let {campaignId} = useParams();
 
     // database will check if user has existing character in selected campaign
@@ -29,16 +29,22 @@ function ShowCampaign() {
         } else {    // data for a playable character was returned
             console.log("character found, have fun!")
             setCampaign(data.campaign)
-            setCharacter(data)
+            setPlayerCharacter(data)
         }
     }
 
     return(
         <div>
-            {character ? 
-                campaign ? <CurrentCampaign  campaign={campaign} character={character}/> : 'Loading...'
+            {playerCharacter ? 
+                campaign ? <CurrentCampaign  campaign={campaign} playerCharacter={playerCharacter}/> : 'Loading...'
             :
-                campaign ? <CharacterCreator campaign={campaign} setCharacter={setCharacter} /> : 'Loading...'
+                campaign ? <CharacterCreator 
+                                campaign={campaign} 
+                                myCharacters={myCharacters} 
+                                setMyCharacters={setMyCharacters} 
+                                setPlayerCharacter={setPlayerCharacter} 
+                            /> 
+                            : 'Loading...'
             }
         </div>
     )

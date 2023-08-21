@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function CurrentCampaign({campaign, character}) {
+function CurrentCampaign({campaign, playerCharacter}) {
     const [message, setMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState(false);
@@ -15,7 +15,7 @@ function CurrentCampaign({campaign, character}) {
         name,
         race,
         character_class,
-    } = character
+    } = playerCharacter
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -24,7 +24,7 @@ function CurrentCampaign({campaign, character}) {
         console.log("-------------")
         console.log("character: " + name + ", " + race + " " + character_class)
         console.log("message: " + message)
-        console.log("character id: " + character.id)
+        console.log("character id: " + playerCharacter.id)
         console.log("campaign id: " + campaign.id)
         console.log("campaign title: " + title)
         console.log("-------------")
@@ -57,7 +57,7 @@ function CurrentCampaign({campaign, character}) {
             <p>{description}</p>        
             <div>
                 <h2>Character:</h2>
-                {character ? 
+                {playerCharacter ? 
                     <h3>{name}, {race} {character_class}. Campaign id: {campaign.id}</h3>
                     :
                     ''
