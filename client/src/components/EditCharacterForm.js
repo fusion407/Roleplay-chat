@@ -5,6 +5,7 @@ function EditCharacterForm({myCharacters, setMyCharacters, selectedCharacter, se
     const [name, setName] = useState(selectedCharacter.name)
     const [race, setRace] = useState(selectedCharacter.race)
     const [characterClass, setCharacterClass] = useState(selectedCharacter.character_class)
+    const [isLoading, setIsLoading] = useState('')
     const [errors, setErrors] = useState('')
     const navigate = useNavigate();
 
@@ -19,9 +20,9 @@ function EditCharacterForm({myCharacters, setMyCharacters, selectedCharacter, se
         alert("Character has been updated!")
     }
     
-    function handleUpdate(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        fetch(`/characters/${selectedCharacter.id}`, {
+        await fetch(`/characters/${selectedCharacter.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -42,11 +43,36 @@ function EditCharacterForm({myCharacters, setMyCharacters, selectedCharacter, se
     return(
         <div>
             <h1>Edit Character</h1>
-            <h2>{name}</h2>
-            <p>user id: {selectedCharacter.id}</p>
-            <p>race: {race}</p>
-            <p>class: {characterClass}</p>
-            <p>campaign id: {selectedCharacter.campaign.id}</p>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  autoComplete="off"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label htmlFor="race">Race</label>
+                <input
+                  type="race"
+                  id="race"
+                  autoComplete="off"
+                  value={race}
+                  onChange={(e) => setRace(e.target.value)}
+                />
+                <label htmlFor="characterClass">Class</label>
+                <input
+                  type="characterClass"
+                  id="characterClass"
+                  autoComplete="off"
+                  value={characterClass}
+                  onChange={(e) => setCharacterClass(e.target.value)}
+                />
+                <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
+                <div>
+                  {errors ? errors : ""}
+                </div>
+            </form>
         </div>
     )
 }

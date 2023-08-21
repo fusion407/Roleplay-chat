@@ -21,20 +21,11 @@ function MyCharactersCard(props) {
     function handleEdit(e) {
         e.preventDefault()
 
-        //debug
-        console.log("edit button clicked")
-        console.log("character to be edited: " + name + ", user id: " + id)
-        // -------
-
         setSelectedCharacter(props)
         navigate(`/characters/${id}/edit`)
 
     }
-    // function onDelete() {
-    //     setMyCharacters((myCharacters) => {
-    //     return myCharacters.filter((character) => character.id !== id)
-    //     });
-    // }
+
     function onDeleteCharacter() {
         setMyCharacters((myCharacters) =>
         myCharacters.filter((character) => character.id !== id)
