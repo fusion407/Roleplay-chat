@@ -17,6 +17,11 @@ class CharactersController < ApplicationController
         head :no_content
     end
 
+    def displayUsersCharacters
+        characters = Character.all.where(user_id: @current_user.id)
+        render json: characters
+    end
+
     private
 
     def find_character
