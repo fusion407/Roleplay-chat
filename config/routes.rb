@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :characters
   resources :users
 
+  mount ActionCable.server => '/cable'
+
   get "/users", to: "users#show"
 
   post "/login", to: "sessions#create"
