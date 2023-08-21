@@ -1,3 +1,4 @@
+import MyCharactersList from './MyCharactersList'
 import { UserContext } from '../contexts/UserContext'
 import React, { useContext, useEffect, useState } from 'react'
 
@@ -21,6 +22,9 @@ function MyCharacters() {
         <div>
             <div>
               <p>Welcome, {user.username}.</p>
+              <div>
+                {myCharacters ? <MyCharactersList myCharacters={myCharacters}/> : ''}
+              </div>
             </div>
         </div>
     )
