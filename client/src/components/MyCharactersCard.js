@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 
-function MyCharactersCard(props) {
+function MyCharactersCard({id, name, race, character_class, campaign, myCharacters, setMyCharacters}) {
 
-    const {
-        id,
-        name,
-        race,
-        character_class,
-        campaign
-    } = props
+    // const {
+    //     id,
+    //     name,
+    //     race,
+    //     character_class,
+    //     campaign,
+    //     setMyCharacters,
+    //     myCharacters
+    // } = props
 
     // todo:
     // Make EditCharacter component that will be displayed onClick of edit button
@@ -25,6 +27,16 @@ function MyCharactersCard(props) {
 
 
     }
+    // function onDelete() {
+    //     setMyCharacters((myCharacters) => {
+    //     return myCharacters.filter((character) => character.id !== id)
+    //     });
+    // }
+    function onDeleteCharacter() {
+        setMyCharacters((myCharacters) =>
+        myCharacters.filter((character) => character.id !== id)
+        );
+      }
     function handleDelete(e) {
         e.preventDefault()
 
@@ -32,8 +44,14 @@ function MyCharactersCard(props) {
         console.log("delete button clicked")
         console.log("character deleted: " + name + ", user id: " + id)
         // -------
-        
 
+        fetch(`/characters/${id}`, {
+            method: "DELETE",
+          }).then((r) => {
+            if (r.ok) {
+              onDeleteCharacter();
+            }
+          });
     }
 
     return(

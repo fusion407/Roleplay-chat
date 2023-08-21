@@ -15,7 +15,7 @@ function CampaignsCard(props) {
             <img src={image_url} alt="campaign img"/>
             <p>{description}</p>
             <div>
-                <Link to={`/campaigns/${id}`}>Join</Link>
+                <Link to={`/campaigns/${id}`}>Play</Link>
             </div>
         </>
     )

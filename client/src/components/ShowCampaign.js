@@ -9,6 +9,9 @@ function ShowCampaign() {
     const [character, setCharacter] = useState()
     let {campaignId} = useParams();
 
+    // database will check if user has existing character in selected campaign
+    // if user has no playable character, data for campaign is returned
+    // if user has an existing character, then data for that character is returned
     useEffect(() => {
         fetch(`/campaigns/${campaignId}`).then((r) => {
           if (r.ok) {
@@ -18,10 +21,12 @@ function ShowCampaign() {
       }, []);
 
     function checkForAvailableCharacter(data) {
+        // if there is no 'user' attached to returned JSON, then user has no playable character
+        // set campaigns state from returned data and prompt user to create a new character
         if(!data.user) {
             console.log("no characters, lets create a new one")
             setCampaign(data)
-        } else {
+        } else {    // data for a playable character was returned
             console.log("character found, have fun!")
             setCampaign(data.campaign)
             setCharacter(data)

@@ -5,6 +5,7 @@ import React, { useContext, useEffect, useState } from 'react'
 
 function MyCharacters() {
     const [myCharacters, setMyCharacters] = useState('')
+
     const {user} = useContext(UserContext)
 
     useEffect(() => {
@@ -16,14 +17,12 @@ function MyCharacters() {
         });
       }, []);
 
-    console.log(myCharacters)
-
     return(
         <div>
             <div>
               <p>Welcome, {user.username}.</p>
               <div>
-                {myCharacters ? <MyCharactersList myCharacters={myCharacters}/> : ''}
+                {myCharacters ? <MyCharactersList myCharacters={myCharacters} setMyCharacters={setMyCharacters}/> : ''}
               </div>
             </div>
         </div>
