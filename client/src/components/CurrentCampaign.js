@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { CableContext } from '../contexts/cable';
+import { UserContext } from '../contexts/UserContext'
+
+// const ws = new WebSocket("ws://localhost:3000/cable");
 
 function CurrentCampaign({campaign, playerCharacter}) {
+    const [messages, setMessages] = useState('')
     const [message, setMessage] = useState('')
+
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState(false);
+    const cableContext = useContext(CableContext)
+    const { user } = useContext(UserContext)
 
     const {
         title,
@@ -15,40 +23,47 @@ function CurrentCampaign({campaign, playerCharacter}) {
         name,
         race,
         character_class,
-    } = playerCharacter
+    } = playerCharacter  
 
-    function handleSubmit(e) {
+    
+      useEffect(() => {
+        fetchMessages();
+      }, []);
+      
+    const newChannel = cableContext.cable.subscriptions.create({
+      channel: "CampaignChannel",
+      campaign_id: campaign.id
+    },
+    {
+      received: (data) => setMessages([...messages, data])
+    })
+
+
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        // debug
-        console.log("-------------")
-        console.log("character: " + name + ", " + race + " " + character_class)
-        console.log("message: " + message)
-        console.log("character id: " + playerCharacter.id)
-        console.log("campaign id: " + campaign.id)
-        console.log("campaign title: " + title)
-        console.log("-------------")
-
-        // setIsLoading(true);
-        // fetch("/messages", {
+        e.target.message.value = "";
+        newChannel.send({body: message})
+        // await fetch("/messages", {
         //   method: "POST",
         //   headers: {
         //     "Content-Type": "application/json",
         //   },
         //   body: JSON.stringify({ 
-        //     body: message, 
-        //     campaign_id: id,
-        //     character_id : 1,
-        //  }),
-        // }).then((r) => {
-        //   setIsLoading(false);
-        //   if (r.ok) {
-        //     r.json().then((data) => console.log(data));
-        //   } else {
-        //     r.json().then((err) => setErrors(err.errors));
-        //   }
+        //         body: message,
+        //         campaign_id: campaign.id,
+        //         character_id: playerCharacter.id,
+        //    }),
         // });
-      }
+      };
+    
+      const fetchMessages = async () => {
+        const response = await fetch("/messages");
+        const data = await response.json();
+        setMessages(data);
+      };
+    
+    
 
     return(
         <div>
@@ -71,9 +86,22 @@ function CurrentCampaign({campaign, playerCharacter}) {
                         onChange={(e) => setMessage(e.target.value)}
                     />
                     <button type="submit">{isLoading ? "Loading..." : "Send"}</button>
-
                 </form>
             </div>
+            {messages ? 
+                (
+                <div className="messages" id="messages">
+                    {messages.map((message) => (
+                    <div className="message" key={message.id}>
+                    <p>{message.body}</p>
+                    </div>
+                    ))}
+                </div>
+                )
+                : 
+                ''
+            }
+
         </div>
     )
 }

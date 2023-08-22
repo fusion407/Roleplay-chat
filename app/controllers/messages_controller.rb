@@ -7,8 +7,9 @@ class MessagesController < ApplicationController
     end
 
     def create
-        message = Message.create!(message_params)
-        render json: message, status: :created
+        message = Message.create(message_params)
+        serialized_message = message.serialize
+        ActionCable.server.broadcast("campaign_#{message.campaign.id}", serialized_message)
     end
 
     private

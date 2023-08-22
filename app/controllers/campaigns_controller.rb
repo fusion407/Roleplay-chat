@@ -13,6 +13,7 @@ class CampaignsController < ApplicationController
         else
             render json: playable_character.first
         end
+        
     end
 
     def create
