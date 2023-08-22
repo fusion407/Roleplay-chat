@@ -40,21 +40,21 @@ function CurrentCampaign({campaign, playerCharacter}) {
 
 
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         e.target.message.value = "";
+        await fetch("/messages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+                body: message,
+                campaign_id: campaign.id,
+                character_id: playerCharacter.id,
+           }),
+        });
         newChannel.send({body: message})
-        // await fetch("/messages", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({ 
-        //         body: message,
-        //         campaign_id: campaign.id,
-        //         character_id: playerCharacter.id,
-        //    }),
-        // });
       };
     
       const fetchMessages = async () => {
