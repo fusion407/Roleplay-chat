@@ -1,17 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { CableContext } from '../contexts/cable';
 import { UserContext } from '../contexts/UserContext'
+// import Error from './Error'
 
-// const ws = new WebSocket("ws://localhost:3000/cable");
 
 function CurrentCampaign({campaign, playerCharacter}) {
     const [messages, setMessages] = useState('')
     const [message, setMessage] = useState('')
-
-    const [isLoading, setIsLoading] = useState(false);
-    const [errors, setErrors] = useState(false);
     const cableContext = useContext(CableContext)
-    const { user } = useContext(UserContext)
+
+    // const [isLoading, setIsLoading] = useState(false);
+    // const [errors, setErrors] = useState(false);
 
     const {
         title,
@@ -42,6 +41,7 @@ function CurrentCampaign({campaign, playerCharacter}) {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // setIsLoading(true)
         e.target.message.value = "";
         await fetch("/messages", {
           method: "POST",
@@ -53,8 +53,15 @@ function CurrentCampaign({campaign, playerCharacter}) {
                 campaign_id: campaign.id,
                 character_id: playerCharacter.id,
            }),
-        });
-        newChannel.send({body: message, character: playerCharacter})
+        // }).then((r) => {
+        //     setIsLoading(false);
+        //     if (r.ok) {
+        //         r.json().then((message) => setMessages([...messages, message]))
+        //     } else {
+        //         r.json().then((err) => setErrors(err.errors))
+        //     }
+           });
+           newChannel.send({body: message, character: playerCharacter})
       };
     
       const fetchMessages = async () => {
@@ -85,21 +92,24 @@ function CurrentCampaign({campaign, playerCharacter}) {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                     />
-                    <button type="submit">{isLoading ? "Loading..." : "Send"}</button>
+                    <button type="submit">Send</button>
+                    {/* <div>
+                        {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
+                    </div> */}
                 </form>
             </div>
             {messages ? 
                 (
                 <div className="messages" id="messages">
                     {messages.map((message) => (
-                    <div className="message" key={message.id}>
-                    <p>{message.character.name} : {message.body}</p>
-                    </div>
+                        <div className="message" key={message.id}>
+                            <p>{message.character.name} : {message.body}</p>
+                        </div>
                     ))}
                 </div>
                 )
                 : 
-                ''
+                    ''
             }
 
         </div>
