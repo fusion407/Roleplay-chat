@@ -54,7 +54,7 @@ function CurrentCampaign({campaign, playerCharacter}) {
                 character_id: playerCharacter.id,
            }),
         });
-        newChannel.send({body: message, campaign_id: campaign.id, character_id: playerCharacter.id})
+        newChannel.send({body: message, character: playerCharacter})
       };
     
       const fetchMessages = async () => {
@@ -93,7 +93,7 @@ function CurrentCampaign({campaign, playerCharacter}) {
                 <div className="messages" id="messages">
                     {messages.map((message) => (
                     <div className="message" key={message.id}>
-                    <p>{message.body}</p>
+                    <p>{message.character.name} : {message.body}</p>
                     </div>
                     ))}
                 </div>
