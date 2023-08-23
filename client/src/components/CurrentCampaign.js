@@ -54,11 +54,11 @@ function CurrentCampaign({campaign, playerCharacter}) {
                 character_id: playerCharacter.id,
            }),
         });
-        newChannel.send({body: message})
+        newChannel.send({body: message, campaign_id: campaign.id, character_id: playerCharacter.id})
       };
     
       const fetchMessages = async () => {
-        const response = await fetch("/messages");
+        const response = await fetch(`/campaigns/${campaign.id}/messages`);
         const data = await response.json();
         setMessages(data);
       };

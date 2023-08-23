@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get "/mycharacters", to: "characters#displayUsersCharacters"
 
+  get "/campaigns/:id/messages", to: "campaigns#showMessages"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

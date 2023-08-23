@@ -13,7 +13,11 @@ class CampaignsController < ApplicationController
         else
             render json: playable_character.first
         end
-        
+    end
+
+    def showMessages
+        messages = find_campaign.messages.all
+        render json: messages
     end
 
     def create
