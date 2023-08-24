@@ -40,12 +40,13 @@ function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCha
 
     return(
         <div>
-            <h1>Create new character</h1>
-            <div>
-                <h2>Campaign: {campaign.title}</h2>
+            <h1 className='campaignListTitle'>Create new character</h1>
+            <div className='campaignInfoBanner'>
+                <h2>{campaign.title}</h2>
+                <img src={campaign.image_url}></img>
                 <p>{campaign.description}</p>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form className="characterForm" onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
@@ -70,7 +71,7 @@ function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCha
                   value={characterClass}
                   onChange={(e) => setCharacterClass(e.target.value)}
                 />
-                <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
+                <button className='submitButton' type="submit">{isLoading ? "Loading..." : "Create"}</button>
                 <div>
                     {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
                 </div>

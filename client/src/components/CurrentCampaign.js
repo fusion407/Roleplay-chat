@@ -74,16 +74,20 @@ function CurrentCampaign({campaign, playerCharacter}) {
 
     return(
         <div>
-            <h2>{title}</h2>
-            <img src={image_url} alt="campaign img"/>
-            <p>{description}</p>        
-            <div>
+            <div className='campaignInfoBanner'>
+                <h2>{title}</h2>
+                <img src={image_url} alt="campaign img"/>
+                <p>{description}</p>  
+            </div>      
+            <div className='campaignCharacterBox'>
                 <h2>Character:</h2>
                 {playerCharacter ? 
                     <h3>{name}, {race} {character_class}. Campaign id: {campaign.id}</h3>
                     :
                     ''
                 }
+            </div>
+            <div className='chatBox'>
                 <h2>Chat:</h2>
                 <form onSubmit={handleSubmit}>
                     <input 
@@ -97,20 +101,20 @@ function CurrentCampaign({campaign, playerCharacter}) {
                         {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
                     </div> */}
                 </form>
+                {messages ? 
+                    (
+                    <div className="messages" id="messages">
+                        {messages.map((message) => (
+                            <div className="message" key={message.id}>
+                                <p>{message.character.name} : {message.body}</p>
+                            </div>
+                        ))}
+                    </div>
+                    )
+                    : 
+                        ''
+                }
             </div>
-            {messages ? 
-                (
-                <div className="messages" id="messages">
-                    {messages.map((message) => (
-                        <div className="message" key={message.id}>
-                            <p>{message.character.name} : {message.body}</p>
-                        </div>
-                    ))}
-                </div>
-                )
-                : 
-                    ''
-            }
 
         </div>
     )

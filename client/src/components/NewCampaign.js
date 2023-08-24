@@ -32,39 +32,38 @@ function NewCampaign({setCampaigns}) {
       }
 
     return(
-        <div>
-            <div>
-              <form onSubmit={handleSubmit}>
-                <label htmlFor="title">Title</label>
-                <input
-                  type="text"
-                  id="title"
-                  autoComplete="off"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <label htmlFor="image">Image URL</label>
-                <input
-                  type="text"
-                  id="image"
-                  autoComplete="off"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
-                <label htmlFor="description">Description</label>
-                <input
-                  type="text"
-                  id="description"
-                  autoComplete="off"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-                <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
-                <div>
-                    {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
-                </div>
-              </form>
-            </div>
+        <div className='formBox'>
+            <h1 className='campaignListTitle'>New Campaign</h1>
+            <form className='characterForm' onSubmit={handleSubmit}>
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                autoComplete="off"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <label htmlFor="image">Image URL</label>
+              <input
+                type="text"
+                id="image"
+                autoComplete="off"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              />
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                id="description"
+                autoComplete="off"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <button className='submitButton' type="submit">{isLoading ? "Loading..." : "Submit"}</button>
+              <div>
+                  {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
+              </div>
+            </form>
         </div>
     )
 }

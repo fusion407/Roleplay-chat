@@ -29,6 +29,46 @@
 .campaignListTitle {
   display: flex;
   justify-content: center;
+  text-decoration: underline;
+}
+
+.campaignInfoBanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-style: solid;
+  border-radius: 0.5px;
+}
+
+.formBox {
+  border-style: solid;
+  margin: 2rem;
+  padding: 2rem;
+}
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.campaignCharacterBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-style: solid;
+
+}
+
+.characterForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  line-height: 2rem;
+  font-size: 20px;
+}
+.submitButton {
+  margin: 1rem;
+  font-size: 20px;
 }
 
 /* .campaignCardPlay {
