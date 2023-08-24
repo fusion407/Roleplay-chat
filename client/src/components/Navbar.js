@@ -34,15 +34,15 @@ function Navbar({handleLogout}) {
                     <li><Link to="/campaigns">Campaigns</Link></li>
                     <li><Link to="/campaigns/new">New Campaign</Link></li>
                     {user ? (
-                      <>
+                      <div className="logButtons">
                         <li><Link to="/characters">My Characters</Link></li>
-                        <li><button onClick={handleLogout}>Logout</button></li>
-                      </>
+                        <li><button className="logoutButton" onClick={handleLogout}>Logout</button></li>
+                      </div>
                     ) : (
-                      <>
+                      <div className="logButtons">
                         <li><Link to="/signup">Sign up</Link></li>
                         <li><Link to="/login">Login</Link></li>
-                      </>
+                      </div>
                     )}
                 </ul>
             </div>
