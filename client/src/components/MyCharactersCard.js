@@ -14,6 +14,18 @@ function MyCharactersCard(props) {
     } = props
 
 
+    const linkStyle = {
+        backgroundColor: "#4CAF50",
+        border: "none",
+        color: "white",
+        padding: "7px 16px",
+        margin: "1rem",
+        textAlign: "center",
+        textDecoration: "none",
+        display: "inline-block",
+        fontSize: "16px"
+    };
+    
     function handleEdit(e) {
         e.preventDefault()
 
@@ -40,22 +52,21 @@ function MyCharactersCard(props) {
     }
 
     return(
-        <>
+        <div className="myCharacterCard">
             <div>
                 <h2>{name}</h2>
-                <p>id: {id}</p>
                 <p>Race: {race}</p>
                 <p>Class: {character_class}</p>
-                <p>Campaign: {campaign.title}</p>
+                <p>{campaign.title}</p>
                 <div>
-                    <Link to={`/campaigns/${campaign.id}`}>Play</Link>
+                    <Link style={linkStyle} to={`/campaigns/${campaign.id}`}>Play</Link>
                 </div>
             </div>
-            <div>
-                <button onClick={handleEdit}>Edit</button>
-                <button onClick={handleDelete}>Delete</button>
+            <div className="editDeleteButtons">
+                <button className='myCharacterButtons' onClick={handleEdit}>Edit</button>
+                <button className='myCharacterButtons' onClick={handleDelete}>Delete</button>
             </div>
-        </>
+        </div>
     )
 }
 

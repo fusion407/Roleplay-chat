@@ -82,7 +82,7 @@ function CurrentCampaign({campaign, playerCharacter}) {
             <div className='campaignCharacterBox'>
                 <h2>Character:</h2>
                 {playerCharacter ? 
-                    <h3>{name}, {race} {character_class}. Campaign id: {campaign.id}</h3>
+                    <h3>{name}, {race} {character_class}</h3>
                     :
                     ''
                 }

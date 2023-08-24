@@ -46,37 +46,39 @@ function EditCharacterForm({myCharacters, setMyCharacters, selectedCharacter, se
       }
     return(
         <div>
-            <h1>Edit Character</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  autoComplete="off"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <label htmlFor="race">Race</label>
-                <input
-                  type="race"
-                  id="race"
-                  autoComplete="off"
-                  value={race}
-                  onChange={(e) => setRace(e.target.value)}
-                />
-                <label htmlFor="characterClass">Class</label>
-                <input
-                  type="characterClass"
-                  id="characterClass"
-                  autoComplete="off"
-                  value={characterClass}
-                  onChange={(e) => setCharacterClass(e.target.value)}
-                />
-                <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
-                <div>
-                    {errors ? errors.map((error) => <Error error={error}/>) : ""}
-                </div>
-            </form>
+            <div className='formBox'>
+                <h1 className='campaignListTitle'>Edit Character</h1>
+                <form className="characterForm" onSubmit={handleSubmit}>
+                    <label htmlFor="name">Name</label>
+                    <input
+                    type="text"
+                    id="name"
+                    autoComplete="off"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    />
+                    <label htmlFor="race">Race</label>
+                    <input
+                    type="race"
+                    id="race"
+                    autoComplete="off"
+                    value={race}
+                    onChange={(e) => setRace(e.target.value)}
+                    />
+                    <label htmlFor="characterClass">Class</label>
+                    <input
+                    type="characterClass"
+                    id="characterClass"
+                    autoComplete="off"
+                    value={characterClass}
+                    onChange={(e) => setCharacterClass(e.target.value)}
+                    />
+                    <button className="submitButton" type="submit">{isLoading ? "Loading..." : "Submit"}</button>
+                    <div>
+                        {errors ? errors.map((error) => <Error error={error}/>) : ""}
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

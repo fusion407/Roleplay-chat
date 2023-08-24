@@ -17,7 +17,7 @@ function MyCharactersList({myCharacters, setMyCharacters, setSelectedCharacter})
     )
 
     return(
-        <div>
+        <div className="myCharacterList">
             {myCharactersData}
         </div>
     )

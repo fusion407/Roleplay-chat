@@ -18,7 +18,6 @@ function MyCharacters({myCharacters, setMyCharacters, setSelectedCharacter}) {
     return(
         <div>
             <div>
-              <p>Welcome, {user.username}.</p>
               <div>
                 {myCharacters ? <MyCharactersList 
                                     myCharacters={myCharacters} 
