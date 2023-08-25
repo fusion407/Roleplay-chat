@@ -1,3 +1,27 @@
+.homePage {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeText {
+  display: flex;
+  justify-content: center;
+
+}
+
+.messages {
+  display: flex;
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  flex-direction: column-reverse;
+}
+
 .logoutButton {
   background-color: rgb(235, 138, 138); /* Green */
   border: none;
@@ -21,7 +45,9 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   padding: 2px 16px;
-  margin: 2rem;
+  margin: auto;
+  margin-top: 2rem;
+  width: 60%;
   flex-direction: column;
   align-items: center;
 }
@@ -42,7 +68,9 @@
 
 .formBox {
   border-style: solid;
-  margin: 2rem;
+  margin: auto;
+  margin-top: 2rem;
+  width: 30%;
   padding: 2rem;
 }
 .chatBox {
@@ -67,13 +95,22 @@
   font-size: 20px;
 }
 
+.loginSignupForms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  line-height: 2rem;
+  font-size: 20px;
+}
+
 .myCharacterCard {
   display: flex;
   background-color: #78787c;
   border: none;
   color: white;
   padding: 7px 16px;
-  margin: 1rem;
+  margin: 2rem;
   text-align: center;
   text-decoration: none;
   font-size: 16px;

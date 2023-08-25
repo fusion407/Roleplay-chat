@@ -40,8 +40,8 @@ function Signup() {
         });
       }
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='formBox'>
+            <form className="loginSignupForms" onSubmit={handleSubmit}>
                 <h1>Sign Up</h1>
                 <label htmlFor="username">Username</label>
                 <input
@@ -67,7 +67,7 @@ function Signup() {
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
                   autoComplete="current-password"
                 />
-                <button type="submit">{isLoading ? "Loading..." : "Sign up"}</button>
+                <button className="submitButton" type="submit">{isLoading ? "Loading..." : "Sign up"}</button>
                 <div>
                     {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
                 </div>

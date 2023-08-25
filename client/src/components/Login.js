@@ -33,8 +33,8 @@ function Login() {
       }
 
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='formBox'>
+            <form className="loginSignupForms" onSubmit={handleSubmit}>
                 <h1>Login</h1>
                 <label htmlFor="username">Username</label>
                 <input
@@ -52,7 +52,7 @@ function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+                <button className="submitButton" type="submit">{isLoading ? "Loading..." : "Login"}</button>
                 <div>
                   {errors ? errors : ""}
                 </div>
