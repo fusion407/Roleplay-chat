@@ -11,6 +11,7 @@ function CampaignsCard(props) {
 
     const linkStyle = {
         backgroundColor: "#4CAF50",
+        fontFamily: "Yatra One",
         border: "none",
         color: "white",
         padding: "7px 16px",
