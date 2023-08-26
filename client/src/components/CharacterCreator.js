@@ -5,6 +5,7 @@ function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCha
     const [name, setName] = useState('')
     const [race, setRace] = useState('')
     const [characterClass, setCharacterClass] = useState('')
+    
     const [isLoading, setIsLoading] = useState()
     const [errors, setErrors] = useState('')
 

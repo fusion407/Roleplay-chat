@@ -8,10 +8,10 @@ import MessageList from './MessageList'
 function CurrentCampaign({campaign, playerCharacter}) {
     const [messages, setMessages] = useState('')
     const [message, setMessage] = useState('')
+    const [errors, setErrors] = useState(false);
+
     const cableContext = useContext(CableContext)
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [errors, setErrors] = useState(false);
 
     const {
         title,
@@ -30,7 +30,6 @@ function CurrentCampaign({campaign, playerCharacter}) {
         fetchMessages();
       }, []);
       
-
     function sendPostAndSocketResponse(data) {
         newChannel.send({
             id: data.id,
@@ -45,7 +44,6 @@ function CurrentCampaign({campaign, playerCharacter}) {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // setIsLoading(true)
         e.target.message.value = "";
         await fetch("/messages", {
           method: "POST",
@@ -59,7 +57,6 @@ function CurrentCampaign({campaign, playerCharacter}) {
                 character_id: playerCharacter.id,
            }),
         }).then((r) => {
-            setIsLoading(false);
             if (r.ok) {
                 r.json().then((data) => sendPostAndSocketResponse(data))
             } else {

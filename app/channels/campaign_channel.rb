@@ -10,7 +10,6 @@ class CampaignChannel < ApplicationCable::Channel
 
 
   def receive(data)
-    # puts data
     ActionCable.server.broadcast("campaign_#{params[:campaign_id]}", data)
   end
 end

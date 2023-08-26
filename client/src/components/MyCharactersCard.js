@@ -28,7 +28,6 @@ function MyCharactersCard(props) {
     
     function handleEdit(e) {
         e.preventDefault()
-
         setSelectedCharacter(props)
         navigate(`/characters/${id}/edit`)
 

@@ -1,7 +1,7 @@
-function MessageItem({id, body, character}) {
+function MessageItem({body, character}) {
     return(
         <ul>
-            <li>{id}: {character.name} : {body}</li>
+            <li>{character.name} : {body}</li>
         </ul>
     )
 }
