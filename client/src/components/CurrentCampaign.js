@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { CableContext } from '../contexts/cable';
 import { UserContext } from '../contexts/UserContext'
-// import Error from './Error'
+import Error from './Error'
 
 
 function CurrentCampaign({campaign, playerCharacter}) {
@@ -9,8 +9,8 @@ function CurrentCampaign({campaign, playerCharacter}) {
     const [message, setMessage] = useState('')
     const cableContext = useContext(CableContext)
 
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [errors, setErrors] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState(false);
 
     const {
         title,
@@ -29,13 +29,7 @@ function CurrentCampaign({campaign, playerCharacter}) {
         fetchMessages();
       }, []);
       
-    const newChannel = cableContext.cable.subscriptions.create({
-      channel: "CampaignChannel",
-      campaign_id: campaign.id
-    },
-    {
-      received: (data) => setMessages([...messages, data])
-    })
+
 
 
     
@@ -43,27 +37,36 @@ function CurrentCampaign({campaign, playerCharacter}) {
         e.preventDefault();
         // setIsLoading(true)
         e.target.message.value = "";
+        newChannel.send({body: message, character: playerCharacter})
         await fetch("/messages", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ 
+                key: message.id,
                 body: message,
                 campaign_id: campaign.id,
                 character_id: playerCharacter.id,
            }),
-        // }).then((r) => {
-        //     setIsLoading(false);
-        //     if (r.ok) {
-        //         r.json().then((message) => setMessages([...messages, message]))
-        //     } else {
-        //         r.json().then((err) => setErrors(err.errors))
-        //     }
+        }).then((r) => {
+            setIsLoading(false);
+            if (r.ok) {
+                r.json().then((message) => setMessages([...messages, message]))
+            } else {
+                r.json().then((err) => setErrors(err.errors))
+            }
            });
-           newChannel.send({body: message, character: playerCharacter})
       };
     
+      const newChannel = cableContext.cable.subscriptions.create({
+        channel: "CampaignChannel",
+        campaign_id: campaign.id
+      },
+      {
+        received: (data) => setMessages([...messages, data])
+      })
+
       const fetchMessages = async () => {
         const response = await fetch(`/campaigns/${campaign.id}/messages`);
         const data = await response.json();
@@ -97,9 +100,9 @@ function CurrentCampaign({campaign, playerCharacter}) {
                         onChange={(e) => setMessage(e.target.value)}
                     />
                     <button type="submit">Send</button>
-                    {/* <div>
+                    <div>
                         {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
-                    </div> */}
+                    </div>
                 </form>
                 {messages ? 
                     (
