@@ -34,8 +34,6 @@ function ShowCampaign({myCharacters, setMyCharacters}) {
             :
                 campaign ? <CharacterCreator 
                                 campaign={campaign} 
-                                myCharacters={myCharacters} 
-                                setMyCharacters={setMyCharacters} 
                                 setPlayerCharacter={setPlayerCharacter} 
                             /> 
                             : 'Loading...'

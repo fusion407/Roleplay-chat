@@ -1,24 +1,23 @@
 import { useState } from 'react'
 import Error from './Error'
 
-function CharacterCreator({campaign, myCharacters, setMyCharacters, setPlayerCharacter}) {
+function CharacterCreator({campaign, setPlayerCharacter}) {
     const [name, setName] = useState('')
     const [race, setRace] = useState('')
     const [characterClass, setCharacterClass] = useState('')
-    
+
     const [isLoading, setIsLoading] = useState()
     const [errors, setErrors] = useState('')
 
 
     function onCreateNewCharacter(character) {
         setPlayerCharacter(character)
-        setMyCharacters([...myCharacters, character])
     }
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
         
-        fetch("/characters", {
+        await fetch("/characters", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

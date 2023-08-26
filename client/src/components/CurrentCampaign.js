@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { CableContext } from '../contexts/cable';
-import { UserContext } from '../contexts/UserContext'
 import Error from './Error'
 import MessageList from './MessageList'
 
@@ -35,8 +34,8 @@ function CurrentCampaign({campaign, playerCharacter}) {
             id: data.id,
             key: data.id,
             body: data.body,
-            campaign_id: campaign.id,
-            character_id: playerCharacter.id,
+            // campaign_id: campaign.id,
+            // character_id: playerCharacter.id,
             character: playerCharacter
         })
     }
@@ -70,7 +69,11 @@ function CurrentCampaign({campaign, playerCharacter}) {
         campaign_id: campaign.id
       },
       {
-        received: (data) => setMessages([...messages, data])
+        received: (data) => setMessages([...messages, data]),
+
+        connected() {
+            console.log("Connected to CampaignChannel, room: " + campaign.id)
+        }
       })
 
       const fetchMessages = async () => {

@@ -12,10 +12,10 @@ function Login() {
     let navigate = useNavigate();
 
     
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        fetch("/login", {
+        await fetch("/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

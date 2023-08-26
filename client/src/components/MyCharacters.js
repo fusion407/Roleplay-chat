@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 
 function MyCharacters({myCharacters, setMyCharacters, setSelectedCharacter}) {
     
-    useEffect(() => {
+    useEffect(() =>  {
         fetch("/mycharacters").then((r) => {
           if (r.ok) {
             r.json().then((characters) => setMyCharacters(characters));
