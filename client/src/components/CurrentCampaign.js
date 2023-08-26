@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { CableContext } from '../contexts/cable';
 import { UserContext } from '../contexts/UserContext'
 import Error from './Error'
+import MessageList from './MessageList'
 
 
 function CurrentCampaign({campaign, playerCharacter}) {
@@ -30,14 +31,22 @@ function CurrentCampaign({campaign, playerCharacter}) {
       }, []);
       
 
-
+    function sendPostAndSocketResponse(data) {
+        newChannel.send({
+            id: data.id,
+            key: data.id,
+            body: data.body,
+            campaign_id: campaign.id,
+            character_id: playerCharacter.id,
+            character: playerCharacter
+        })
+    }
 
     
     const handleSubmit = async (e) => {
         e.preventDefault();
         // setIsLoading(true)
         e.target.message.value = "";
-        newChannel.send({body: message, character: playerCharacter})
         await fetch("/messages", {
           method: "POST",
           headers: {
@@ -52,7 +61,7 @@ function CurrentCampaign({campaign, playerCharacter}) {
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {
-                r.json().then((message) => setMessages([...messages, message]))
+                r.json().then((data) => sendPostAndSocketResponse(data))
             } else {
                 r.json().then((err) => setErrors(err.errors))
             }
@@ -104,19 +113,7 @@ function CurrentCampaign({campaign, playerCharacter}) {
                         {errors ? errors.map((error) => <Error key={error} error={error}/>) : ""}
                     </div>
                 </form>
-                {messages ? 
-                    (
-                    <div className="messages" id="messages">
-                        {messages.map((message) => (
-                            <div className="message" key={message.id}>
-                                <p>{message.character.name} : {message.body}</p>
-                            </div>
-                        ))}
-                    </div>
-                    )
-                    : 
-                        ''
-                }
+                {messages ? <MessageList messages={messages} /> : ''}
             </div>
 
         </div>

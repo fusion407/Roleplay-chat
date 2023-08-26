@@ -18,7 +18,7 @@
 
 }
 
-.messages {
+div.messages {
   display: flex;
   border: 2px solid #dedede;
   background-color: #f1f1f1;
@@ -167,7 +167,7 @@
   background-color: #4CAF50;
 } */
 
-ul {
+.navUl {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -178,12 +178,12 @@ ul {
   width: 100%;
 }
 
-li {
+.navList {
   float: left;
   border-right: 1px solid #bbb;
 }
 
-li a {
+.navLink {
   display: block;
   color: white;
   text-align: center;
@@ -192,7 +192,7 @@ li a {
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover {
+.navLink:hover {
   background-color: #111;
 }
 

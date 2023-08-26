@@ -29,19 +29,19 @@ function Navbar({handleLogout}) {
         <header>
             <div className="navBar">
                 {/* original nav */}
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/campaigns">Campaigns</Link></li>
-                    <li><Link to="/campaigns/new">New Campaign</Link></li>
+                <ul className='navUl'>
+                    <li className="navList"><Link className="navLink" to="/">Home</Link></li>
+                    <li className="navList"><Link className="navLink" to="/campaigns">Campaigns</Link></li>
+                    <li className="navList"><Link className="navLink" to="/campaigns/new">New Campaign</Link></li>
                     {user ? (
                       <div className="logButtons">
-                        <li><Link to="/characters">My Characters</Link></li>
-                        <li><button className="logoutButton" onClick={handleLogout}>Logout</button></li>
+                        <li className="navList"><Link className="navLink" to="/characters">My Characters</Link></li>
+                        <li className="navList"><button className="logoutButton" onClick={handleLogout}>Logout</button></li>
                       </div>
                     ) : (
                       <div className="logButtons">
-                        <li><Link to="/signup">Sign up</Link></li>
-                        <li><Link to="/login">Login</Link></li>
+                        <li className="navList"><Link className="navLink" to="/signup">Sign up</Link></li>
+                        <li className="navList"><Link className="navLink" to="/login">Login</Link></li>
                       </div>
                     )}
                 </ul>
