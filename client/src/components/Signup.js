@@ -19,6 +19,7 @@ function Signup() {
         e.preventDefault();
         setErrors([]);
         setIsLoading(true);
+        
         await fetch("/signup", {
           method: "POST",
           headers: {

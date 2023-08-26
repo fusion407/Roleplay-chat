@@ -4,7 +4,7 @@ import CurrentCampaign from './CurrentCampaign';
 import CharacterCreator from './CharacterCreator';
 
 
-function ShowCampaign({myCharacters, setMyCharacters}) {
+function ShowCampaign() {
     const [campaign, setCampaign] = useState('')
     const [playerCharacter, setPlayerCharacter] = useState()
     let {campaignId} = useParams();

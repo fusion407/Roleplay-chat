@@ -54,10 +54,7 @@ function App() {
           }
           />
           <Route path="/campaigns/:campaignId" element={
-            <ShowCampaign               
-              myCharacters={myCharacters} 
-              setMyCharacters={setMyCharacters} 
-            />
+            <ShowCampaign />
           }
           />
          <Route path="/characters" element={
