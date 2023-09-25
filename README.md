@@ -1,5 +1,7 @@
 # Roleplay Chat
 
+![Screenshot 2023-08-26 124523](https://github.com/fusion407/Roleplay-chat/assets/61926486/5e1fe15d-63dd-421e-aedf-77a5abe3f03b)
+
 ## Description
 
 This is my final capstone project for Flatiron School that earned my certificate in Software Engineering.
