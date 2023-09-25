@@ -1,24 +1,67 @@
-# README
+# Roleplay Chat
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+This is my final capstone project for Flatiron School that earned my certificate in Software Engineering.
 
-* Ruby version
+In this applications, users may sign up and login to an account, join and create new campaigns which serve as chatrooms for other users to join and narrate RPG themed fantasy stories.
 
-* System dependencies
+## Usage
+The following are required:
 
-* Configuration
+Ruby 2.7.4
+NodeJS (v16)
+Postgresql
+Ruby can be installed with following command:
 
-* Database creation
+```
+$ rvm install 2.7.4 --default
+```
 
-* Database initialization
+Install latest version of bundler and rails:
 
-* How to run the test suite
+```
+$ gem install bundler $ gem install rails
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Install NodeJS:
 
-* Deployment instructions
+```
+$ npm i -g npm
+```
 
-* ...
+Install Postgres:
+
+```
+$ sudo apt update $ sudo apt install postgresql postgresql-contrib libpq-dev
+```
+
+Run Postgres service:
+
+```
+$ sudo service postgresql start
+```
+
+Creating database user so it can connect to rails:
+
+First check operating system username:
+
+```
+$ whoami
+```
+
+You must use the same name to create Postgres user:
+
+```
+$ sudo -u postgres -i
+
+$ createuser -sr <username>
+```
+
+Clone this repository and run rails server and react application:
+
+```
+$ rails s
+
+$ npm start --prefix client
+```
