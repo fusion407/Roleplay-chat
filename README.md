@@ -9,8 +9,8 @@ In this applications, users may sign up and login to an account, join and create
 ## Usage
 The following are required:
 
-Ruby 2.7.4
-NodeJS (v16)
+Ruby 2.7.4, 
+NodeJS (v16), 
 Postgresql
 Ruby can be installed with following command:
 
