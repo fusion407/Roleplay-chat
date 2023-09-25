@@ -22,7 +22,9 @@ $ rvm install 2.7.4 --default
 Install latest version of bundler and rails:
 
 ```
-$ gem install bundler $ gem install rails
+$ gem install bundler
+
+$ gem install rails
 ```
 
 Install NodeJS:
@@ -34,7 +36,9 @@ $ npm i -g npm
 Install Postgres:
 
 ```
-$ sudo apt update $ sudo apt install postgresql postgresql-contrib libpq-dev
+$ sudo apt update
+
+$ sudo apt install postgresql postgresql-contrib libpq-dev
 ```
 
 Run Postgres service:
