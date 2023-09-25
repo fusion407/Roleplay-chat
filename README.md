@@ -23,7 +23,8 @@ Install latest version of bundler and rails:
 
 ```
 $ gem install bundler
-
+```
+```
 $ gem install rails
 ```
 
@@ -37,7 +38,8 @@ Install Postgres:
 
 ```
 $ sudo apt update
-
+```
+```
 $ sudo apt install postgresql postgresql-contrib libpq-dev
 ```
 
@@ -59,7 +61,8 @@ You must use the same name to create Postgres user:
 
 ```
 $ sudo -u postgres -i
-
+```
+```
 $ createuser -sr <username>
 ```
 
@@ -67,6 +70,7 @@ Clone this repository and run rails server and react application:
 
 ```
 $ rails s
-
+```
+```
 $ npm start --prefix client
 ```
